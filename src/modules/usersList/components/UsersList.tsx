@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Button, Grid } from '@mui/material';
+import { Button, Divider, Grid } from '@mui/material';
 import { useUsersStore } from '../storeZustand';
 import { user } from '../../../mock-data';
 const UsersList = () => {
@@ -17,7 +17,7 @@ const UsersList = () => {
 
   return (
     <>
-      <Grid container spacing={2} sx={{ p: '2rem', flexDirection: 'column' }}>
+      <Grid container spacing={2} sx={{ maxWidth: '450px', p: '2rem', flexDirection: 'column' }}>
         {
           users.length === 0 ? 'Loading' :
           (users.map(user => {
@@ -26,14 +26,15 @@ const UsersList = () => {
             )
           }))
         }
+        <Button
+          variant="text"
+          size="small"
+          onClick={()=>postNewUser(user)}
+        >
+          Add new user
+        </Button>
       </Grid>
-      <Button
-        variant="text"
-        size="small"
-        onClick={()=>postNewUser(user)}
-      >
-        Add new user
-      </Button>
+      <Divider/>
     </>
   )
 }

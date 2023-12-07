@@ -1,5 +1,5 @@
 import { makeAutoObservable, autorun} from "mobx";
-import { IPost, PostPreview, ModifiedFields } from "../types/post.types";
+import { IPost, PostPreview, ModifiedFields } from "./types";
 
 class Post {
   posts: IPost[] = [];

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 
 import { Grid} from '@mui/material';
 
-import store from '../store/post';
+import store from '../store';
 import PostItem from './PostItem';
 
 const Posts = observer(() => {

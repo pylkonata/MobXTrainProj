@@ -1,9 +1,9 @@
 import { ChangeEvent, useState, FormEvent } from 'react';
 import { Button, Alert, AlertTitle, Snackbar } from '@mui/material';
 
-import { PostPreview } from '../types/post.types';
+import { PostPreview } from '../types';
 
-import store from '../store/post';
+import store from '../store';
 
 const AddPostForm = () => {
   const [post, setPost] = useState<PostPreview>({

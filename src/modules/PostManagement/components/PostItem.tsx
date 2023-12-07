@@ -7,8 +7,8 @@ import {
   Button
 } from "@mui/material";
 
-import { IPost} from '../types/post.types';
-import store from '../store/post';
+import { IPost} from '../types';
+import store from '../store';
 
 type PostItemType = {
   post: IPost;

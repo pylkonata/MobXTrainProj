@@ -2,6 +2,8 @@ import { create } from 'zustand';
 import { IUser } from './types';
 import { devtools} from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
+
+import { BASE_URL } from '../../constants';
 type Store = {
   users: IUser[],
   addUser: (user: IUser) => void,
@@ -19,7 +21,7 @@ export const useUsersStore = create<Store>()(
     }),
     fetchUsers: async () => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        const response = await fetch(`${BASE_URL}/users`);
         const data: IUser[] = await response.json();
         set({ users: data });      
       } catch (error) {
@@ -28,7 +30,7 @@ export const useUsersStore = create<Store>()(
     },
     postUserRequest: async (user: IUser) => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+        const response = await fetch(`${BASE_URL}/users`, {
           method: 'POST',
           body: JSON.stringify(user),
           headers: {

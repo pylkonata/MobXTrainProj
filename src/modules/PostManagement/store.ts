@@ -1,6 +1,6 @@
 import { makeAutoObservable, autorun} from "mobx";
 import { IPost, PostPreview, ModifiedFields } from "./types";
-
+import { BASE_URL } from "../../constants";
 class Post {
   posts: IPost[] = [];
   constructor() {
@@ -36,7 +36,7 @@ class Post {
   }
 
   fetchPosts() {
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    fetch(`${BASE_URL}/posts`)
       .then((response) => response.json())
       .then(json => {
         this.setPosts(json);
@@ -44,7 +44,7 @@ class Post {
       .catch(err => console.log(err));
   }
   deletePostRequest(id: number) {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    fetch(`${BASE_URL}/posts/${id}`, {
       method: 'DELETE',
     })
       .then(response => {
@@ -59,7 +59,7 @@ class Post {
   createPostRequest(post: PostPreview, userId = 1) {
     const newPost = { ...post, userId };
 
-    fetch('https://jsonplaceholder.typicode.com/posts', {
+    fetch(`${BASE_URL}/posts`, {
       method: 'POST',
       body: JSON.stringify(newPost),
       headers: {
@@ -75,7 +75,7 @@ class Post {
   }
 
   updatePostRequest(post: IPost) {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${post.id}`, {
+    fetch(`${BASE_URL}/posts/${post.id}`, {
       method: 'PUT',
       body: JSON.stringify(post),
       headers: {
@@ -90,7 +90,7 @@ class Post {
   }
 
   patchPostRequest(field: ModifiedFields, id: number) {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    fetch(`${BASE_URL}/posts/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(field),
     headers: {

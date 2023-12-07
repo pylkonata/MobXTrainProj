@@ -30,9 +30,7 @@ const PostItem = ({ post }: PostItemType) => {
     store.updatePostRequest(newPost);
     // store.patchPostRequest({ title: 'modified title' }, post.id);
     console.log(`${post.id} was edited`);
-  };
-
-  
+  };  
 
   return (
     <Grid item xs={2} sm={4} md={4}>      

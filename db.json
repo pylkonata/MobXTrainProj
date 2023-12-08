@@ -1,0 +1,74 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "users": [
+    {
+      "name": "Alisa",
+      "id": 1
+    }
+  ],
+  "todos": [
+    {
+      "id": 1702031247843,
+      "completed": true,
+      "title": "таск таск"
+    },
+    {
+      "id": 1702031250182,
+      "completed": true,
+      "title": "таск таск"
+    },
+    {
+      "id": 1702031696672,
+      "completed": true,
+      "title": "іввв"
+    },
+    {
+      "id": 1702035352803,
+      "completed": false,
+      "title": "new task"
+    },
+    {
+      "id": 1702035441567,
+      "completed": false,
+      "title": "sdffddsf"
+    },
+    {
+      "id": 1702035536052,
+      "completed": true,
+      "title": "finish task"
+    },
+    {
+      "id": 1702035722575,
+      "completed": false,
+      "title": "magic it works"
+    },
+    {
+      "id": 1702036049325,
+      "completed": false,
+      "title": "sdfdsfdfsdf"
+    },
+    {
+      "id": 1702036585135,
+      "completed": true,
+      "title": "lets work!"
+    },
+    {
+      "id": 1702036616154,
+      "completed": false,
+      "title": "sdfdfdfs"
+    }
+  ]
+}

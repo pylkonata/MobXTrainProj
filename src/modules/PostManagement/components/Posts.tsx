@@ -1,18 +1,13 @@
-import { useEffect, useRef } from 'react';
+import { useEffect} from 'react';
 import { observer } from 'mobx-react-lite'; 
-
 import { Grid} from '@mui/material';
 
 import store from '../store';
 import PostItem from './PostItem';
 
 const Posts = observer(() => {
-  const initialized = useRef(false);
   useEffect(() => {
-    if (!initialized.current) {
-      initialized.current = true;      
-      store.fetchPosts();
-    }
+    store.fetchPosts();    
   }, [])
 
   return (
@@ -30,6 +25,6 @@ const Posts = observer(() => {
       </Grid>
     </>
   )
-})
+});
 
 export default Posts;

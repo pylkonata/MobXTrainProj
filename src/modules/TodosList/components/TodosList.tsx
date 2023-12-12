@@ -4,6 +4,7 @@ import { ITodo } from '../types';
 import { getTodos } from '../services';
 import AddTodo from './AddTodo';
 import TodoItem from './TodoItem';
+import { List } from '@mui/material';
 
 const TodosList = () => {
   const todosQuery = useQuery({
@@ -15,17 +16,18 @@ const TodosList = () => {
   if (todosQuery.status === "error") {
     return <h1>{JSON.stringify(todosQuery.error)}</h1>
   }
-  
+
   return (
-    <div style={{width: '100%'}}>
-      <AddTodo/>
-      <ul>
-        {todosQuery.data.map((todo:ITodo) => (
-          <TodoItem key={todo.id} todo={todo}/>
-        ))}
-      </ul>
-    </div>
-    
+    <>
+      <AddTodo />
+      <List sx={{ width: '100%', maxWidth: '75%', bgcolor: 'background.paper' }}>
+        {todosQuery.data.map((todo: ITodo) => {
+          return (
+            <TodoItem key={todo.id} todo={todo} />
+          );
+        })}
+      </List>
+    </>
   )
 }
 

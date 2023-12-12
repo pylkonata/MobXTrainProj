@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { Button, Divider, Grid } from '@mui/material';
+import { useEffect } from 'react';
+import { Button, Grid } from '@mui/material';
 import { useUsersStore } from '../storeZustand';
 import { user } from '../../../mock-data';
 const UsersList = () => {
@@ -7,12 +7,8 @@ const UsersList = () => {
   const fetchUsers = useUsersStore(state => state.fetchUsers);
   // const addUser = useUsersStore(state => state.addUser);
   const postNewUser = useUsersStore(state => state.postUserRequest);
-  const initial = useRef(false);
   useEffect(() => {
-    if (!initial.current) {
-      fetchUsers();
-      initial.current = true;
-    }
+    fetchUsers();
   }, [])
 
   return (
@@ -20,21 +16,20 @@ const UsersList = () => {
       <Grid container spacing={2} sx={{ maxWidth: '450px', p: '2rem', flexDirection: 'column' }}>
         {
           users.length === 0 ? 'Loading' :
-          (users.map(user => {
-            return (
-              <li key={user.id} style={{listStyle: 'none'}}>{`${user.id}: ${user.name}`}</li>
-            )
-          }))
+            (users.map(user => {
+              return (
+                <li key={user.id} style={{ listStyle: 'none' }}>{`${user.id}: ${user.name}`}</li>
+              )
+            }))
         }
         <Button
           variant="text"
           size="small"
-          onClick={()=>postNewUser(user)}
+          onClick={() => postNewUser(user)}
         >
           Add new user
         </Button>
       </Grid>
-      <Divider/>
     </>
   )
 }

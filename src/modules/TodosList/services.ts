@@ -1,6 +1,6 @@
 import { ITodo } from "./types";
 
-const BASIC_URL = 'http://localhost:3000';
+import { BASIC_URL } from "../../constants";
 
 export const addTodo = async (todo: ITodo) => {
   const response = await fetch(`${BASIC_URL}/todos`, {

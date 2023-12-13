@@ -7,11 +7,12 @@ import { CopyrightOutlined } from '@ant-design/icons';
 import AddPostForm from '../../PostManagement/components/AddPostForm';
 import Posts from '../../PostManagement/components/Posts';
 import TodosList from '../../TodosList/components/TodosList';
-import UsersList from '../../usersList/components/UsersList';
+import UsersComponent from '../../usersList/components/UsersComponent';
+import AddUser from '../../usersList/components/AddUser';
 
 const { Header, Content, Footer } = Layout;
 
-const components = [<UsersList />, <Posts />, <AddPostForm />, <TodosList />];
+const components = [<UsersComponent />, <AddUser />, <Posts />, <AddPostForm />, <TodosList />];
 
 const items = menuList.map((item, index) => ({
   key: index + 1,
@@ -20,19 +21,16 @@ const items = menuList.map((item, index) => ({
 }));
 
 const PageLayout: React.FC = () => {
-  const [current, setCurrent] = useState(['1']);
+  const [current, setCurrent] = useState<string>('1');
   const [page, setPage] = useState(components[0]);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   const onClickMenu = (e: any) => {
-    console.log('click ', e);
-    console.log(items[e.key]);
     setPage(items[e.key - 1].content);
     setCurrent(e.key);
   };
-  console.log(current);
   return (
     <Layout style={{ minHeight: '100vh', }}>
       <Header style={{ display: 'flex', alignItems: 'center' }}>
@@ -42,6 +40,7 @@ const PageLayout: React.FC = () => {
           items={items}
           style={{ flex: 1, minWidth: 0 }}
           onClick={onClickMenu}
+          selectedKeys={[current]}
         />
       </Header>
       <Content style={{ display: 'flex', flexDirection: 'column', padding: '0 48px' }}>

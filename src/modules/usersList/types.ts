@@ -1,3 +1,4 @@
+import React from "react"
 export interface IUser {
   id: number,
   name: string,
@@ -19,5 +20,16 @@ export interface IUser {
     name: string,
     catchPhrase: string,
     bs: string
-  }  
+  }
+}
+
+export type UserType = {
+  key: React.Key
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  gender: string;
+  address: string;
+  company: string;
 }

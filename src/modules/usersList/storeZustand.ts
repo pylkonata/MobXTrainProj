@@ -1,48 +1,48 @@
 import { create } from 'zustand';
-import { IUser } from './types';
-import { devtools} from 'zustand/middleware';
+import { UserType } from './types';
+import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-import { BASE_URL } from '../../constants';
+import { BASIC_URL } from '../../constants';
 type Store = {
-  users: IUser[],
-  addUser: (user: IUser) => void,
+  users: UserType[],
+  addUser: (user: UserType) => void,
   fetchUsers: () => void,
-  postUserRequest: (user: IUser) => void
+  postUserRequest: (user: UserType) => void
 }
 
 export const useUsersStore = create<Store>()(
   immer(
-  devtools(
-  (set) => ({
-    users: [],
-    addUser: (user: IUser) => set(state => {
-      state.users.push(user);
-    }),
-    fetchUsers: async () => {
-      try {
-        const response = await fetch(`${BASE_URL}/users`);
-        const data: IUser[] = await response.json();
-        set({ users: data });      
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    postUserRequest: async (user: IUser) => {
-      try {
-        const response = await fetch(`${BASE_URL}/users`, {
-          method: 'POST',
-          body: JSON.stringify(user),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-          },
-        });
-        const data: IUser = await response.json();
-        set(state => {
-          state.users.push(data);
-        })        
-      } catch (err) {
-        console.log(err);
-      }
-    },
-}))))
+    devtools(
+      (set) => ({
+        users: [],
+        addUser: (user: UserType) => set(state => {
+          state.users.push(user);
+        }),
+        fetchUsers: async () => {
+          try {
+            const response = await fetch(`${BASIC_URL}/users`);
+            const data: UserType[] = await response.json();
+            set({ users: data });
+          } catch (error) {
+            console.log(error);
+          }
+        },
+        postUserRequest: async (user: UserType) => {
+          try {
+            const response = await fetch(`${BASIC_URL}/users`, {
+              method: 'POST',
+              body: JSON.stringify(user),
+              headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+              },
+            });
+            const data: UserType = await response.json();
+            set(state => {
+              state.users.push(data);
+            })
+          } catch (err) {
+            console.log(err);
+          }
+        },
+      }))))

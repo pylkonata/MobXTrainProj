@@ -1,10 +1,24 @@
 import { ChangeEvent, useState, FormEvent } from 'react';
-import { Button, Alert, AlertTitle, Snackbar } from '@mui/material';
+import { Alert, AlertTitle, Snackbar } from '@mui/material';
+import styled from 'styled-components';
 
 import { PostPreview } from '../types';
 
 import store from '../store';
+import SubHeader from './SubHeader';
+import Button from './Button';
+import { blue } from '@mui/material/colors';
 
+const Form = styled.form`
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+const StyledLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+`;
 const AddPostForm = () => {
   const [post, setPost] = useState<PostPreview>({
     title: '',
@@ -20,7 +34,7 @@ const AddPostForm = () => {
         ...prev,
         [name]: value,
       }))
-      
+
     }
   };
 
@@ -32,37 +46,36 @@ const AddPostForm = () => {
       title: '',
       body: '',
     }));
-    setSuccessResponse(true);    
+    setSuccessResponse(true);
   };
 
   return (
     <>
-      <form
-        style={{ maxWidth: '450px', display: 'flex', flexDirection: 'column', gap: '16px' }}
+      <Form
         onSubmit={onSubmit}
       >
-        <h3>New post</h3>
-        <label style={{ display: 'flex', flexDirection: 'column' }}>
+        <SubHeader color={blue[900]} fontSize={'1.5rem'}>New post</SubHeader>
+        <StyledLabel>
           Title
           <input
             type="text"
             value={post.title}
             name='title'
-            onChange={(e)=>onChangePostValue(e)}
+            onChange={(e) => onChangePostValue(e)}
           />
-        </label>
-        <label style={{ display: 'flex', flexDirection: 'column' }}>
+        </StyledLabel>
+        <StyledLabel>
           Post
-          <textarea rows={10} cols={30} value={post.body} name='body' onChange={(e)=>onChangePostValue(e)}></textarea>
-        </label>
-        <Button variant="text"
-          size="small"
+          <textarea rows={10} cols={30} value={post.body} name='body' onChange={(e) => onChangePostValue(e)}></textarea>
+        </StyledLabel>
+        <Button
+          primary
           type='submit'
-          disabled={(!post.title || !post.body)? true : false}
+          disabled={(!post.title || !post.body) ? true : false}
         >
           Add new post
         </Button>
-      </form>
+      </Form>
       <Snackbar
         open={successResponse}
         autoHideDuration={5000}
@@ -73,7 +86,7 @@ const AddPostForm = () => {
           <AlertTitle>Success</AlertTitle>
           the post was added!
         </Alert>
-      </Snackbar>      
+      </Snackbar>
     </>
   )
 }
